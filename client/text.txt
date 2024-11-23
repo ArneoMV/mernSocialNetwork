@@ -7,7 +7,7 @@ git push heroku master: Gura lokalne promene na Heroku, gde će se aplikacija au
 
 
 git add .
-git commit -m 'Edit profile update'
+git commit -m 'NotFound page update'
 heroku git:remote -a protected-caverns-81630
 git status
 git push heroku master
