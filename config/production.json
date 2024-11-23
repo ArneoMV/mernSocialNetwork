@@ -1,0 +1,6 @@
+{
+	"mongoURI": "mongodb+srv://arneomarinvincetic:vSHuBa6Qos2vVjFJ@devconnctor.x1ahh.mongodb.net/?retryWrites=true&w=majority&appName=DevConnctor",
+	"jwtSecret": "mysecrettoken",
+	"githubClientId": "8a67d2169abff507e9ae835cc6e06625528d2e68",
+	"githubSecret": "Ov23liSrKXOYb86dYgdz"
+}

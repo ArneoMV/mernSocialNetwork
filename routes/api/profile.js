@@ -7,6 +7,7 @@ const { check, validationResult } = require("express-validator");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 
 // @route        GET api/profile/me
 // @desc         Get current user's profile
@@ -128,7 +129,7 @@ router.get("/", async (req, res) => {
 });
 
 // @route        GET api/profile/user/:user_id
-// @desc         Get profile id
+// @desc         Get profile ID
 // @access       Public
 router.get("/user/:user_id", async (req, res) => {
 	try {
@@ -153,7 +154,9 @@ router.get("/user/:user_id", async (req, res) => {
 // @access       Private
 router.delete("/", auth, async (req, res) => {
 	try {
-		// @todo - remove user posts
+		// Remove user posts
+		await Post.deleteMany({ user: req.user.id });
+
 		// Remove profile
 		await Profile.findOneAndDelete({ user: req.user.id });
 		// Remove user
