@@ -8,7 +8,6 @@ const EditProfile = ({
 	profile: { profile, loading },
 	createProfile,
 	getCurrentProfile,
-	history,
 }) => {
 	const [formData, setFormData] = useState({
 		company: "",
@@ -28,25 +27,27 @@ const EditProfile = ({
 	const [displaySocialInputs, toggleSocialInputs] = useState(false);
 	const navigate = useNavigate();
 
+	// Fetch current profile on component load
 	useEffect(() => {
 		getCurrentProfile();
 
-		setFormData({
-			company: loading || !profile.company ? "" : profile.company,
-			website: loading || !profile.website ? "" : profile.website,
-			location: loading || !profile.location ? "" : profile.location,
-			status: loading || !profile.status ? "" : profile.status,
-			skills: loading || !profile.skills ? "" : profile.skills.join(","),
-			githubusername:
-				loading || !profile.githubusername ? "" : profile.githubusername,
-
-			bio: loading || !profile.bio ? "" : profile.bio,
-			twitter: loading || !profile.social ? "" : profile.social.twitter,
-			facebook: loading || !profile.social ? "" : profile.social.facebook,
-			linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-			youtube: loading || !profile.social ? "" : profile.social.youtube,
-			instagram: loading || !profile.social ? "" : profile.social.instagram,
-		});
+		// Set form data when profile is loaded
+		if (!loading && profile) {
+			setFormData({
+				company: profile.company || "",
+				website: profile.website || "",
+				location: profile.location || "",
+				status: profile.status || "",
+				skills: profile.skills ? profile.skills.join(",") : "",
+				githubusername: profile.githubusername || "",
+				bio: profile.bio || "",
+				twitter: profile.social?.twitter || "",
+				facebook: profile.social?.facebook || "",
+				linkedin: profile.social?.linkedin || "",
+				youtube: profile.social?.youtube || "",
+				instagram: profile.social?.instagram || "",
+			});
+		}
 	}, [loading, profile, getCurrentProfile]);
 
 	const {
@@ -69,7 +70,7 @@ const EditProfile = ({
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		createProfile(formData, navigate, true); // pass navigate instead of history
+		createProfile(formData, navigate, true);
 	};
 
 	return (
