@@ -1,0 +1,13 @@
+git add .: Dodaje sve izmene u lokalni staging za sledeći commit.
+git commit -m '...': Beleži izmene u lokalni Git repozitorijum.
+heroku git:remote -a ...: Vezuje vaš lokalni repo sa Heroku aplikacijom. Ovo je potrebno samo jednom po aplikaciji.
+git status: Opciona komanda koja proverava šta je dodato u staging i šta će biti uključeno u sledeći commit.
+git push heroku master: Gura lokalne promene na Heroku, gde će se aplikacija automatski deploy-ovati.
+
+
+
+git add .
+git commit -m 'Edit profile update'
+heroku git:remote -a protected-caverns-81630
+git status
+git push heroku master
